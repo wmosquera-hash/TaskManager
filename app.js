@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const prioridad = document.querySelector("#prioridad-tarea");
     const lista = document.querySelector("#lista-tareas");
 
-    const tareas = [];
+    const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
     formulario.addEventListener("submit", (evento) => {
         evento.preventDefault();
@@ -23,15 +23,28 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         tareas.push(nuevaTarea);
+        localStorage.setItem("tareas", JSON.stringify(tareas));
 
+        mostrarTarea(nuevaTarea);
+
+        formulario.reset();
+
+    });
+            function mostrarTarea(nuevaTarea) {
         const elemento = document.createElement("li");
         const botonCompletar = document.createElement("button");
-         botonCompletar.textContent = "Completar";
+         botonCompletar.textContent = nuevaTarea.completada
+    ? "Deshacer"
+    : "Completar";
+
+elemento.style.textDecoration = nuevaTarea.completada
+    ? "line-through"
+    : "none";
         elemento.textContent =
             `${nuevaTarea.titulo} - Prioridad: ${nuevaTarea.prioridad}`;
             botonCompletar.addEventListener("click", () => {
     nuevaTarea.completada = !nuevaTarea.completada;
-
+    localStorage.setItem("tareas", JSON.stringify(tareas));
     elemento.style.textDecoration = nuevaTarea.completada
         ? "line-through"
         : "none";
@@ -50,14 +63,16 @@ botonEliminar.addEventListener("click", () => {
     if (posicion !== -1) {
         tareas.splice(posicion, 1);
     }
-
+    localStorage.setItem("tareas", JSON.stringify(tareas));
     elemento.remove();
 });
 
 elemento.appendChild(botonEliminar);
 
         lista.appendChild(elemento);
+        }
 
-        formulario.reset();
-    });
+    tareas.forEach((tarea) => {
+    mostrarTarea(tarea);
+});
 });
