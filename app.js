@@ -25,8 +25,36 @@ document.addEventListener("DOMContentLoaded", () => {
         tareas.push(nuevaTarea);
 
         const elemento = document.createElement("li");
+        const botonCompletar = document.createElement("button");
+         botonCompletar.textContent = "Completar";
         elemento.textContent =
             `${nuevaTarea.titulo} - Prioridad: ${nuevaTarea.prioridad}`;
+            botonCompletar.addEventListener("click", () => {
+    nuevaTarea.completada = !nuevaTarea.completada;
+
+    elemento.style.textDecoration = nuevaTarea.completada
+        ? "line-through"
+        : "none";
+
+    botonCompletar.textContent = nuevaTarea.completada
+        ? "Deshacer"
+        : "Completar";
+});
+         elemento.appendChild(botonCompletar);
+         const botonEliminar = document.createElement("button");
+botonEliminar.textContent = "Eliminar";
+
+botonEliminar.addEventListener("click", () => {
+    const posicion = tareas.indexOf(nuevaTarea);
+
+    if (posicion !== -1) {
+        tareas.splice(posicion, 1);
+    }
+
+    elemento.remove();
+});
+
+elemento.appendChild(botonEliminar);
 
         lista.appendChild(elemento);
 

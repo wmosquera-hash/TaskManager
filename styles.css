@@ -15,3 +15,27 @@ p {
     text-align: center;
     font-size: 18px;
 }
+/* Presentación de la lista de tareas */
+
+.lista-tareas ul {
+    list-style: none;
+    padding: 0;
+    max-width: 800px;
+}
+
+.lista-tareas li {
+    background-color: white;
+    border: 1px solid #d5ddeb;
+    border-left: 5px solid #2563eb;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.lista-tareas button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
