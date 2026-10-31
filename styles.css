@@ -59,3 +59,18 @@ input, select {
     border-radius: 10px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.10);
 }
+/* Fondo azul y encabezado */
+
+body {
+    background-color: #dcebff;
+    color: #111827;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    background-color: #174ea6;
+    color: white;
+    padding: 22px;
+    border-radius: 12px;
+    text-align: center;
+}
